@@ -9,7 +9,7 @@
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
-  src: url('./fonts/PretendardVariable.woff2') format('woff2-variations');
+  src: url('/src/app/fonts/PretendardVariable.woff2') format('woff2-variations');
 }
 
 /* CSS 변수 정의 - 피그마 디자인 시스템 기반 */
