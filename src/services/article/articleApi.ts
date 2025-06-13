@@ -1,28 +1,59 @@
 import axiosInstance from "@/lib/axiosInstance";
 
+// Article 타입 정의 개선
 interface Article {
-  image: string;
-  content: string;
+  id: number;
   title: string;
+  content: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+  writer: {
+    id: number;
+    nickname: string;
+    image?: string;
+  };
+  likeCount: number;
+  isLiked?: boolean;
 }
 
-export const postArticle = async (article: Article) => {
-  const response = await axiosInstance.post("/articles", article);
+// API 응답 타입 정의
+interface ArticleListResponse {
+  totalCount: number;
+  list: Article[];
+}
+
+interface PaginationParams {
+  page?: number;
+  pageSize?: number;
+  keyword?: string;
+  orderBy?: 'recent' | 'like';
+}
+
+// Article CRUD 함수들
+export const postArticle = async (article: Omit<Article, 'id' | 'createdAt' | 'updatedAt' | 'writer' | 'likeCount'>) => {
+  const response = await axiosInstance.post<Article>("/articles", article);
   return response.data;
 };
 
-export const getArticle = async () => {
-  const response = await axiosInstance.get("/articles");
+export const getArticles = async (params: PaginationParams = {}) => {
+  const response = await axiosInstance.get<ArticleListResponse>("/articles", { params });
   return response.data;
 };
 
 export const getArticleById = async (articleId: number) => {
-  const response = await axiosInstance.get(`/articles/${articleId}`);
+  const response = await axiosInstance.get<Article>(`/articles/${articleId}`);
   return response.data;
 };
 
-export const patchArticle = async (articleId: number, article: Article) => {
-  const response = await axiosInstance.patch(`/articles/${articleId}`, article);
+export const patchArticle = async (
+  articleId: number,
+  article: Partial<Pick<Article, 'title' | 'content' | 'image'>>
+): Promise<Article> => {
+  const response = await axiosInstance.patch<Article>(
+    `/articles/${articleId}`,
+    article
+  );
   return response.data;
 };
 
@@ -40,3 +71,6 @@ export const deleteArticleLike = async (articleId: number) => {
   const response = await axiosInstance.delete(`/articles/${articleId}/like`);
   return response.data;
 };
+
+// 타입 export
+export type { Article, ArticleListResponse, PaginationParams };
