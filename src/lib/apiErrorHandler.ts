@@ -20,7 +20,7 @@ export const handleApiError = (error: unknown): ApiError => {
     if (!error.response) {
       return {
         message: "서버와 통신할 수 없습니다. 네트워크 상태를 확인해주세요.",
-        status: 0,
+        status: 555,
       };
     }
 
