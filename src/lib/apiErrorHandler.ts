@@ -16,6 +16,14 @@ export const handleApiError = (error: unknown): ApiError => {
     const code = error.response?.data?.code;
     const details = error.response?.data?.details;
 
+    // 응답 객체가 없는 경우 => 네트워크 장애 등
+    if (!error.response) {
+      return {
+        message: "서버와 통신할 수 없습니다. 네트워크 상태를 확인해주세요.",
+        status: 0,
+      };
+    }
+
     return {
       message,
       status,
@@ -40,7 +48,7 @@ export const getErrorMessage = (error: ApiError): string => {
   switch (error.status) {
     case 400:
       return error.message || "잘못된 요청입니다.";
-    case 401:
+    case 401 :
       return "로그인이 필요합니다.";
     case 403:
       return "접근 권한이 없습니다.";
