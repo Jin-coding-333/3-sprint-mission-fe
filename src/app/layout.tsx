@@ -1,6 +1,6 @@
 import React from "react";
 import "../globals.css";
-import Provider from "@/providers/provider";
+import Provider from "@/providers/_provider";
 
 export default function RootLayout({
   children,
