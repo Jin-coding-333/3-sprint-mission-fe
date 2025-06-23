@@ -6,11 +6,12 @@ import {
   User,
   UserProfileUpdate,
 } from "@/services/user/userApi";
+import { queryKeys } from "@/constants/queryKeys";
 
 // 1. 사용자 프로필 조회
 export function useUserProfile() {
   return useQuery<User, Error>({
-    queryKey: ["userProfile"],
+    queryKey: queryKeys.userProfile(),
     queryFn: getUserProfile,
   });
 }
@@ -24,7 +25,7 @@ export function useUpdateUserProfile(options?: {
   return useMutation<User, Error, UserProfileUpdate>({
     mutationFn: patchUserProfile,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["userProfile"] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.userProfile() });
       options?.onSuccess?.(data);
     },
     onError: (error) => {

@@ -11,11 +11,12 @@ import {
   CommentParams,
   CreateCommentData,
 } from "@/services/comment/commentApi";
+import { queryKeys } from "@/constants/queryKeys";
 
 // 1. 게시글 댓글 목록 조회
 export function useArticleComments(articleId: number, params?: CommentParams) {
   return useQuery<CommentListResponse, Error>({
-    queryKey: ["articleComments", articleId, params],
+    queryKey: queryKeys.articleComments(articleId, params),
     queryFn: () => getArticleComments(articleId, params ?? {}),
     enabled: !!articleId,
   });
@@ -36,7 +37,7 @@ export function useCreateArticleComment(options?: {
       postArticleComment(articleId, commentData),
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["articleComments", variables.articleId],
+        queryKey: queryKeys.articleComments(variables.articleId),
       });
       options?.onSuccess?.(data);
     },
@@ -61,7 +62,7 @@ export function useUpdateComment(options?: {
       patchComment(commentId, commentData),
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["articleComments", variables.articleId],
+        queryKey: queryKeys.articleComments(variables.articleId),
       });
       options?.onSuccess?.(data);
     },
@@ -81,7 +82,7 @@ export function useDeleteComment(options?: {
     mutationFn: ({ commentId }) => deleteComment(commentId),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["articleComments", variables.articleId],
+        queryKey: queryKeys.articleComments(variables.articleId),
       });
       options?.onSuccess?.();
     },
@@ -94,7 +95,7 @@ export function useDeleteComment(options?: {
 // 5. 상품 댓글 목록 조회
 export function useProductComments(productId: number, params?: CommentParams) {
   return useQuery<CommentListResponse, Error>({
-    queryKey: ["productComments", productId, params],
+    queryKey: queryKeys.productComments(productId, params),
     queryFn: () => getProductComments(productId, params ?? {}),
     enabled: !!productId,
   });
@@ -115,7 +116,7 @@ export function useCreateProductComment(options?: {
       postProductComment(productId, commentData),
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["productComments", variables.productId],
+        queryKey: queryKeys.productComments(variables.productId),
       });
       options?.onSuccess?.(data);
     },

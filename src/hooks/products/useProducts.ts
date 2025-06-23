@@ -13,11 +13,12 @@ import {
   ProductSearchParams,
   CreateProductData,
 } from "@/services/product/productApi";
+import { queryKeys } from "@/constants/queryKeys";
 
 // 1. 전체 상품 목록 조회
 export function useProducts(params?: ProductSearchParams) {
   return useQuery<ProductListResponse, Error>({
-    queryKey: ["products", params],
+    queryKey: queryKeys.products(params),
     queryFn: () => getProducts(params ?? {}),
   });
 }
@@ -25,7 +26,7 @@ export function useProducts(params?: ProductSearchParams) {
 // 2. 단일 상품 상세 조회
 export function useProduct(productId: number) {
   return useQuery<Product, Error>({
-    queryKey: ["product", productId],
+    queryKey: queryKeys.product(productId),
     queryFn: () => getProductById(productId),
     enabled: !!productId,
   });
@@ -40,7 +41,7 @@ export function useCreateProduct(options?: {
   return useMutation<Product, Error, CreateProductData>({
     mutationFn: postProduct,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.products() });
       options?.onSuccess?.(data);
     },
     onError: (error) => {
@@ -63,9 +64,9 @@ export function useUpdateProduct(options?: {
     mutationFn: ({ productId, productData }) =>
       patchProduct(productId, productData),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.products() });
       queryClient.invalidateQueries({
-        queryKey: ["product", variables.productId],
+        queryKey: queryKeys.product(variables.productId),
       });
       options?.onSuccess?.(data);
     },
@@ -84,8 +85,8 @@ export function useDeleteProduct(options?: {
   return useMutation<void, Error, number>({
     mutationFn: (productId) => deleteProduct(productId),
     onSuccess: (_, productId) => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
-      queryClient.invalidateQueries({ queryKey: ["product", productId] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.products() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.product(productId) });
       options?.onSuccess?.();
     },
     onError: (error) => {
@@ -103,8 +104,8 @@ export function useFavoriteProduct(options?: {
   return useMutation<void, Error, number>({
     mutationFn: (productId) => postProductFavorite(productId),
     onSuccess: (_, productId) => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
-      queryClient.invalidateQueries({ queryKey: ["product", productId] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.products() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.product(productId) });
       options?.onSuccess?.();
     },
     onError: (error) => {
@@ -122,8 +123,8 @@ export function useUnfavoriteProduct(options?: {
   return useMutation<void, Error, number>({
     mutationFn: (productId) => deleteProductFavorite(productId),
     onSuccess: (_, productId) => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
-      queryClient.invalidateQueries({ queryKey: ["product", productId] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.products() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.product(productId) });
       options?.onSuccess?.();
     },
     onError: (error) => {

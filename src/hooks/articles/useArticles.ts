@@ -11,11 +11,12 @@ import {
   ArticleListResponse,
   PaginationParams,
 } from "@/services/article/articleApi";
+import { queryKeys } from "@/constants/queryKeys";
 
 // 1. 전체 게시글 목록 조회
 export function useArticles(params?: PaginationParams) {
   return useQuery<ArticleListResponse, Error>({
-    queryKey: ["articles", params],
+    queryKey: queryKeys.articles(params),
     queryFn: () => getArticles(params ?? {}),
   });
 }
@@ -23,7 +24,7 @@ export function useArticles(params?: PaginationParams) {
 // 2. 단일 게시글 상세 조회
 export function useArticle(articleId: number) {
   return useQuery<Article, Error>({
-    queryKey: ["article", articleId],
+    queryKey: queryKeys.article(articleId),
     queryFn: () => getArticleById(articleId),
     enabled: !!articleId,
   });
@@ -42,7 +43,7 @@ export function useCreateArticle(options?: {
   >({
     mutationFn: postArticle,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["articles"] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.articles() });
       options?.onSuccess?.(data);
     },
     onError: (error) => {
@@ -67,9 +68,9 @@ export function useUpdateArticle(options?: {
   >({
     mutationFn: ({ articleId, article }) => patchArticle(articleId, article),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["articles"] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.articles() });
       queryClient.invalidateQueries({
-        queryKey: ["article", variables.articleId],
+        queryKey: queryKeys.article(variables.articleId),
       });
       options?.onSuccess?.(data);
     },
@@ -88,8 +89,8 @@ export function useDeleteArticle(options?: {
   return useMutation<void, Error, number>({
     mutationFn: (articleId) => deleteArticle(articleId),
     onSuccess: (_, articleId) => {
-      queryClient.invalidateQueries({ queryKey: ["articles"] });
-      queryClient.invalidateQueries({ queryKey: ["article", articleId] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.articles() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.article(articleId) });
       options?.onSuccess?.();
     },
     onError: (error) => {
@@ -107,8 +108,8 @@ export function useLikeArticle(options?: {
   return useMutation<void, Error, number>({
     mutationFn: (articleId) => postArticleLike(articleId),
     onSuccess: (_, articleId) => {
-      queryClient.invalidateQueries({ queryKey: ["articles"] });
-      queryClient.invalidateQueries({ queryKey: ["article", articleId] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.articles() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.article(articleId) });
       options?.onSuccess?.();
     },
     onError: (error) => {
@@ -126,8 +127,8 @@ export function useUnlikeArticle(options?: {
   return useMutation<void, Error, number>({
     mutationFn: (articleId) => deleteArticleLike(articleId),
     onSuccess: (_, articleId) => {
-      queryClient.invalidateQueries({ queryKey: ["articles"] });
-      queryClient.invalidateQueries({ queryKey: ["article", articleId] });
+      queryClient.invalidateQueries({ queryKey: queryKeys.articles() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.article(articleId) });
       options?.onSuccess?.();
     },
     onError: (error) => {
