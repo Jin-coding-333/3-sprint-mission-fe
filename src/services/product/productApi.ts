@@ -82,6 +82,24 @@ export const deleteProductFavorite = async (productId: number) => {
 };
 
 export const uploadProductImages = async (imageFiles: File[]) => {
+  // 파일 개수 제한
+  if (imageFiles.length > 10) {
+    throw new Error("최대 10개의 이미지만 업로드할 수 있습니다.");
+  }
+
+  // 각 파일 검증
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const maxSize = 5 * 1024 * 1024; // 5MB
+
+  imageFiles.forEach((file, index) => {
+    if (!allowedTypes.includes(file.type)) {
+      throw new Error(`파일 ${index + 1}: 지원되지 않는 파일 형식입니다.`);
+    }
+    if (file.size > maxSize) {
+      throw new Error(`파일 ${index + 1}: 파일 크기가 너무 큽니다.`);
+    }
+  });
+
   const formData = new FormData();
   imageFiles.forEach((file, index) => {
     formData.append(`image_${index}`, file);
