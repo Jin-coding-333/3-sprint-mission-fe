@@ -14,7 +14,10 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // 로컬스토리지나 쿠키에서 토큰 가져오기
-    const token = localStorage.getItem("accessToken");
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -38,7 +41,10 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken = localStorage.getItem("refreshToken");
+        const refreshToken =
+          typeof window !== "undefined"
+            ? localStorage.getItem("refreshToken")
+            : null;
         if (refreshToken) {
           const response = await axios.post(
             `${axiosInstance.defaults.baseURL}/auth/refresh-token`,
@@ -53,9 +59,11 @@ axiosInstance.interceptors.response.use(
         }
       } catch (refreshError) {
         // 리프레시 실패 시 로그아웃
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        window.location.href = "/login";
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          window.location.href = "/login";
+        }
         return Promise.reject(refreshError);
       }
     }
