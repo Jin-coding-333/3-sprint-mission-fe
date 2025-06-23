@@ -1,4 +1,4 @@
-import { AxiosError } from "axios";
+qimport { AxiosError } from "axios";
 
 // API 에러 타입 정의
 export interface ApiError {
@@ -48,7 +48,7 @@ export const getErrorMessage = (error: ApiError): string => {
   switch (error.status) {
     case 400:
       return error.message || "잘못된 요청입니다.";
-    case 401 :
+    case 401:
       return "로그인이 필요합니다.";
     case 403:
       return "접근 권한이 없습니다.";
