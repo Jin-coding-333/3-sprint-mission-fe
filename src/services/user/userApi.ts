@@ -27,6 +27,18 @@ export const patchUserProfile = async (userData: UserProfileUpdate) => {
 };
 
 export const uploadUserImage = async (imageFile: File) => {
+  // 파일 타입 검증
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  if (!allowedTypes.includes(imageFile.type)) {
+    throw new Error("지원되지 않는 파일 형식입니다.");
+  }
+
+  // 파일 크기 검증 (예: 5MB)
+  const maxSize = 5 * 1024 * 1024;
+  if (imageFile.size > maxSize) {
+    throw new Error("파일 크기가 너무 큽니다.");
+  }
+
   const formData = new FormData();
   formData.append("image", imageFile);
 
