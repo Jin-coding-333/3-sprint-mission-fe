@@ -5,7 +5,7 @@ interface Article {
   id: number;
   title: string;
   content: string;
-  image?: string; 
+  image?: string;
   createdAt: string;
   updatedAt: string;
   writer: {
@@ -27,17 +27,24 @@ interface PaginationParams {
   page?: number;
   pageSize?: number;
   keyword?: string;
-  orderBy?: 'recent' | 'like';
+  orderBy?: "recent" | "like";
 }
 
 // Article CRUD 함수들
-export const postArticle = async (article: Omit<Article, 'id' | 'createdAt' | 'updatedAt' | 'writer' | 'likeCount'>) => {
+export const postArticle = async (
+  article: Omit<
+    Article,
+    "id" | "createdAt" | "updatedAt" | "writer" | "likeCount"
+  >
+) => {
   const response = await axiosInstance.post<Article>("/articles", article);
   return response.data;
 };
 
 export const getArticles = async (params: PaginationParams = {}) => {
-  const response = await axiosInstance.get<ArticleListResponse>("/articles", { params });
+  const response = await axiosInstance.get<ArticleListResponse>("/articles", {
+    params,
+  });
   return response.data;
 };
 
@@ -48,7 +55,7 @@ export const getArticleById = async (articleId: number) => {
 
 export const patchArticle = async (
   articleId: number,
-  article: Partial<Pick<Article, 'title' | 'content' | 'image'>>
+  article: Partial<Pick<Article, "title" | "content" | "image">>
 ): Promise<Article> => {
   const response = await axiosInstance.patch<Article>(
     `/articles/${articleId}`,
@@ -57,17 +64,21 @@ export const patchArticle = async (
   return response.data;
 };
 
-export const deleteArticle = async (articleId: number) => {
+export const deleteArticle = async (articleId: number): Promise<void> => {
   const response = await axiosInstance.delete(`/articles/${articleId}`);
   return response.data;
 };
 
-export const postArticleLike = async (articleId: number) => {
+export const postArticleLike = async (
+  articleId: number
+): Promise<{ success: boolean }> => {
   const response = await axiosInstance.post(`/articles/${articleId}/like`);
   return response.data;
 };
 
-export const deleteArticleLike = async (articleId: number) => {
+export const deleteArticleLike = async (
+  articleId: number
+): Promise<{ success: boolean }> => {
   const response = await axiosInstance.delete(`/articles/${articleId}/like`);
   return response.data;
 };
