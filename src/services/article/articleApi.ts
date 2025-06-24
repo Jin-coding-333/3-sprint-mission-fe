@@ -69,16 +69,12 @@ export const deleteArticle = async (articleId: number): Promise<void> => {
   return response.data;
 };
 
-export const postArticleLike = async (
-  articleId: number
-): Promise<{ success: boolean }> => {
+export const postArticleLike = async (articleId: number): Promise<void> => {
   const response = await axiosInstance.post(`/articles/${articleId}/like`);
   return response.data;
 };
 
-export const deleteArticleLike = async (
-  articleId: number
-): Promise<{ success: boolean }> => {
+export const deleteArticleLike = async (articleId: number): Promise<void> => {
   const response = await axiosInstance.delete(`/articles/${articleId}/like`);
   return response.data;
 };
