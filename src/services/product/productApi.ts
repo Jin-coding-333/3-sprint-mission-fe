@@ -64,17 +64,21 @@ export const patchProduct = async (
   return response.data;
 };
 
-export const deleteProduct = async (productId: number) => {
+export const deleteProduct = async (productId: number): Promise<void> => {
   const response = await axiosInstance.delete(`/products/${productId}`);
   return response.data;
 };
 
-export const postProductFavorite = async (productId: number) => {
+export const postProductFavorite = async (
+  productId: number
+): Promise<{ success: boolean }> => {
   const response = await axiosInstance.post(`/products/${productId}/favorite`);
   return response.data;
 };
 
-export const deleteProductFavorite = async (productId: number) => {
+export const deleteProductFavorite = async (
+  productId: number
+): Promise<{ success: boolean }> => {
   const response = await axiosInstance.delete(
     `/products/${productId}/favorite`
   );
@@ -88,17 +92,17 @@ export const uploadProductImages = async (imageFiles: File[]) => {
   }
 
   // 각 파일 검증
-  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-  const maxSize = 5 * 1024 * 1024; // 5MB
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
-  imageFiles.forEach((file, index) => {
-    if (!allowedTypes.includes(file.type)) {
-      throw new Error(`파일 ${index + 1}: 지원되지 않는 파일 형식입니다.`);
+  for (const file of imageFiles) {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      throw new Error(`지원되지 않는 파일 형식: ${file.type}`);
     }
-    if (file.size > maxSize) {
-      throw new Error(`파일 ${index + 1}: 파일 크기가 너무 큽니다.`);
+    if (file.size > MAX_FILE_SIZE) {
+      throw new Error(`파일 크기가 너무 큽니다: ${file.name}`);
     }
-  });
+  }
 
   const formData = new FormData();
   imageFiles.forEach((file, index) => {
@@ -106,7 +110,7 @@ export const uploadProductImages = async (imageFiles: File[]) => {
   });
 
   const response = await axiosInstance.post<{ urls: string[] }>(
-    "/images/upload",
+    "/products/images/upload",
     formData,
     {
       headers: {
