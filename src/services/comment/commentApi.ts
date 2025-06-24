@@ -61,7 +61,7 @@ export const patchComment = async (
   return response.data;
 };
 
-export const deleteComment = async (commentId: number) => {
+export const deleteComment = async (commentId: number): Promise<void> => {
   const response = await axiosInstance.delete(`/comments/${commentId}`);
   return response.data;
 };
