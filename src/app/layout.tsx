@@ -1,5 +1,6 @@
 import React from "react";
-import "../globals.css";
+import "./globals.css";
+import Provider from "@/providers/_provider";
 
 export default function RootLayout({
   children,
@@ -13,7 +14,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>PandaMarket</title>
       </head>
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
