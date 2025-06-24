@@ -1,7 +1,10 @@
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "https://panda-market-api.vercel.app",
+  baseURL:
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    "https://panda-market-api.vercel.app",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
@@ -62,7 +65,7 @@ axiosInstance.interceptors.response.use(
         if (typeof window !== "undefined") {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
-          window.location.href = "/login";
+          redirect("/login");
         }
         return Promise.reject(refreshError);
       }
