@@ -9,7 +9,7 @@
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
-  src: url('/src/app/fonts/PretendardVariable.woff2') format('woff2-variations');
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
 }
 
 /* CSS 변수 정의 - 피그마 디자인 시스템 기반 */
@@ -95,17 +95,6 @@ select {
   font-size: inherit;
   line-height: inherit;
   color: inherit;
-}
-
-/* 이미지 반응형 설정 */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
 }
 
 /* 스크롤바 스타일 */
@@ -202,47 +191,8 @@ svg {
 /* 유틸리티 클래스 */
 @layer utilities {
 
-  /* 텍스트 색상 유틸리티 */
-  .text-primary {
-    color: var(--primary-100);
-  }
-
-  .text-error {
-    color: var(--error);
-  }
-
-  .text-success {
-    color: var(--success);
-  }
-
-  .text-warning {
-    color: var(--warning);
-  }
-
-  .text-info {
-    color: var(--info);
-  }
-
-  /* 배경 색상 유틸리티 */
-  .bg-primary {
-    background-color: var(--primary-100);
-  }
-
-  .bg-error {
-    background-color: var(--error);
-  }
-
-  .bg-success {
-    background-color: var(--success);
-  }
-
-  .bg-warning {
-    background-color: var(--warning);
-  }
-
-  .bg-info {
-    background-color: var(--info);
-  }
+  /* 커스텀 색상 유틸리티는 Tailwind config에서 이미 정의됨 
+     사용법: text-primary-100, bg-error, text-success 등 */
 
   /* 타이포그래피 유틸리티 - 피그마 기반 */
   .text-title-large {
