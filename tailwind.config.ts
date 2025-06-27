@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import forms from "@tailwindcss/forms";
 
 const config: Config = {
   content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
@@ -28,7 +29,7 @@ const config: Config = {
         info: "var(--info)",
       },
       fontFamily: {
-        pretendard: ["Pretendard", "sans-serif"],
+        pretendard: ["Pretendard Variable", "Pretendard", "sans-serif"],
       },
       fontSize: {
         xs: ["12px", { lineHeight: "18px" }],
@@ -40,17 +41,17 @@ const config: Config = {
         "3xl": ["32px", { lineHeight: "42px" }],
       },
       fontWeight: {
-        light: 300,
-        regular: 400,
-        medium: 500,
-        semiBold: 600,
-        bold: 700,
+        light: "300",
+        regular: "400",
+        medium: "500",
+        semiBold: "600",
+        bold: "700",
       },
       screens: {
-        xs: "375px",
+        sm: "375px",
         md: "744px",
-        xl: "1200px",
-        xxl: "1440px",
+        lg: "1200px",
+        xl: "1440px",
       },
       boxShadow: {
         custom: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
@@ -100,7 +101,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [forms],
 };
 
 export default config;
