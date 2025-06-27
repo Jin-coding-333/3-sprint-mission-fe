@@ -10,34 +10,6 @@
   src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
 }
 
-/* CSS 변수 정의 - 피그마 디자인 시스템 기반 */
-:root {
-  /* Primary Colors */
-  --primary-100: #3692FF;
-  --primary-200: #1967D6;
-  --primary-300: #1251AA;
-
-  /* Error Color */
-  --error: #F74747;
-
-  /* Secondary Colors */
-  --secondary-900: #111827;
-  --secondary-800: #1F2937;
-  --secondary-700: #374151;
-  --secondary-600: #4B5563;
-  --secondary-500: #6B7280;
-  --secondary-400: #9CA3AF;
-  --secondary-300: #E5E7EB;
-  --secondary-200: #F3F4F6;
-  --secondary-100: #F9FAFB;
-  --secondary-50: #F9FAFB;
-
-  /* Semantic Colors */
-  --success: #22C55E;
-  --warning: #FACC15;
-  --info: #3182F6;
-}
-
 /* 기본 요소 스타일 초기화 및 설정 */
 * {
   box-sizing: border-box;
@@ -136,18 +108,5 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* 다크 모드 대응 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--secondary-900);
-    --foreground: var(--secondary-50);
-  }
-
-  body {
-    color: var(--foreground);
-    background-color: var(--background);
   }
 }
