@@ -5,12 +5,7 @@ interface CheckIconProps {
 }
 
 export default function CheckIcon({ color = "blue" }: CheckIconProps) {
-  return (
-    <Image
-      src={`/icons/ic_check-${color}.svg`}
-      alt="check icon"
-      width={24}
-      height={24}
-    />
-  );
+  const src = `/icons/ic_check-${color}.svg`;
+
+  return <Image src={src} alt="check icon" width={24} height={24} />;
 }
