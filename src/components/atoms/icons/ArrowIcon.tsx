@@ -1,20 +1,12 @@
 import Image from "next/image";
 
 interface ArrowIconProps {
-  direction: "left" | "right";
+  type: "left" | "right";
   color?: "black" | "gray" | "white";
 }
 
-export default function ArrowIcon({
-  direction,
-  color = "black",
-}: ArrowIconProps) {
-  const arrowIcon = {
-    left: `/icons/ic_arrow_left_${color}.svg`,
-    right: `/icons/ic_arrow_right_${color}.svg`,
-  };
+export default function ArrowIcon({ type, color = "black" }: ArrowIconProps) {
+  const src = `/icons/ic_arrow_${type}_${color}.svg`;
 
-  return (
-    <Image src={arrowIcon[direction]} alt="arrow icon" width={15} height={15} />
-  );
+  return <Image src={src} alt="arrow icon" width={15} height={15} />;
 }
