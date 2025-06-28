@@ -1,5 +1,7 @@
 /* Tailwind CSS 기본 스타일 */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Pretendard Variable 폰트 로컬 파일 */
 @font-face {
