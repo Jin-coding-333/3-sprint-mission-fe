@@ -36,6 +36,7 @@ const config: Config = {
         sm: ["13px", { lineHeight: "22px" }],
         md: ["14px", { lineHeight: "24px" }],
         lg: ["16px", { lineHeight: "26px" }],
+        "2lg": ["18px", { lineHeight: "28px" }],
         xl: ["20px", { lineHeight: "32px" }],
         "2xl": ["24px", { lineHeight: "32px" }],
         "3xl": ["32px", { lineHeight: "42px" }],
