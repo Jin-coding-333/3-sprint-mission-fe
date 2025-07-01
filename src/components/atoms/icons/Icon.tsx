@@ -11,10 +11,19 @@ interface IconProps {
     | "check-blue"
     | "check-red"
     | "arrow_down";
+  className?: string;
 }
 
-export default function Icon({ type }: IconProps) {
+export default function Icon({ type, className }: IconProps) {
   const iconSrc = `/icons/ic_${type}.svg`;
 
-  return <Image src={iconSrc} alt={`${type} icon`} width={24} height={24} />;
+  return (
+    <Image
+      src={iconSrc}
+      alt={`${type} icon`}
+      width={24}
+      height={24}
+      className={className}
+    />
+  );
 }
