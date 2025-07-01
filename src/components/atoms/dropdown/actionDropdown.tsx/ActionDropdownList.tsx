@@ -1,3 +1,6 @@
+import EditIcon from "../../icons/EditIcon";
+import DeleteIcon from "../../icons/DeleteIcon";
+
 interface ActionDropdownListProps {
   onEdit: () => void;
   onDelete: () => void;
@@ -8,16 +11,21 @@ export default function ActionDropdownList({
   onDelete,
 }: ActionDropdownListProps) {
   return (
-    <div className="mt-[10px] w-[102px] h-[90px] md:w-[140px] md:h-[92px] rounded border-secondary-300 border-[1px]">
+    <div className={actionDropdownListBox}>
       <div className={DropdonwListBox} onClick={onEdit}>
-        수정하기
+        <span>수정하기</span>
+        <EditIcon className="w-4 h-4 text-secondary-400" />
       </div>
       <div className={DropdonwListBox} onClick={onDelete}>
-        삭제하기
+        <span>삭제하기</span>
+        <DeleteIcon className="w-4 h-4 text-secondary-400" />
       </div>
     </div>
   );
 }
 
+const actionDropdownListBox =
+  "absolute top-20px right-0 mt-[10px] w-[102px] h-[90px] md:w-[140px] md:h-[92px] rounded border-secondary-300 border-[1px]";
+
 const DropdonwListBox =
-  "flex items-center justify-center w-auto h-[46px] text-md md:text-lg text-secondary-500 cursor-pointer";
+  "flex items-center justify-between w-auto h-[46px] px-4 text-md md:text-lg text-secondary-500 cursor-pointer hover:bg-secondary-50 transition-colors";
