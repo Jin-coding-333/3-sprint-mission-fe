@@ -1,6 +1,12 @@
-export default function ActionDropdownIcon() {
+interface ActionDropdownIconProps {
+  onClick: () => void;
+}
+
+export default function ActionDropdownIcon({
+  onClick,
+}: ActionDropdownIconProps) {
   return (
-    <div>
+    <div onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
