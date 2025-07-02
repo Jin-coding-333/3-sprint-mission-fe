@@ -8,5 +8,5 @@ interface ArrowIconProps {
 export default function ArrowIcon({ type, color = "black" }: ArrowIconProps) {
   const src = `/icons/ic_arrow_${type}_${color}.svg`;
 
-  return <Image src={src} alt="arrow icon" width={15} height={15} />;
+  return <Image src={src} alt="arrow icon" width={7} height={7} />;
 }
