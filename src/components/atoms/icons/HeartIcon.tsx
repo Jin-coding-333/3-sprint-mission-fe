@@ -2,14 +2,18 @@ import Image from "next/image";
 
 interface HeartIconProps {
   type?: "pink" | "blank";
+  className?: string;
 }
 
-export default function HeartIcon({ type = "pink" }: HeartIconProps) {
+export default function HeartIcon({
+  type = "pink",
+  className,
+}: HeartIconProps) {
   const src = `/icons/ic_heart_${type}.svg`;
 
   return (
     <Image
-      className="w-[22px] h-[22px] md:w-[30px] md:h-[30px]"
+      className={className}
       src={src}
       alt="heart icon"
       width={30}
