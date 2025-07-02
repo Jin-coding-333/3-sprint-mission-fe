@@ -14,7 +14,7 @@ export default function SortDropdownList() {
 }
 
 const sortDropdownListBox =
-  "absolute top-20px right-0 mt-[10px] w-[130px] h-[84px] rounded-[12px] border-secondary-200 border-[1px] cursor-pointer";
+  "absolute top-20px right-0 mt-[10px] w-[130px] h-[84px] rounded-[12px] border-secondary-200 border-[1px] cursor-pointer bg-white";
 
 const sortDropdownListText =
   "flex items-center justify-center w-full h-[42px] text-lg text-secondary-800";
