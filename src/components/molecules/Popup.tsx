@@ -3,10 +3,11 @@ import cn from "@/utils/cn";
 import Button from "@/components/atoms/button/Button";
 
 interface PopupProps {
+  onClick?: () => void;
   children: React.ReactNode;
 }
 
-export default function Popup({ children }: PopupProps) {
+export default function Popup({ onClick, children }: PopupProps) {
   const PopupStyle = {
     popupBoxSize: "w-[327px] h-[220px] md:w-[540px] md:h-[250px]",
     textStyle: " text-lg md:text-2lg",
@@ -29,6 +30,7 @@ export default function Popup({ children }: PopupProps) {
             variant="primary"
             shape="rectangle"
             className={PopupStyle.buttonStyle}
+            onClick={onClick}
           >
             확인
           </Button>
