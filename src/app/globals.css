@@ -44,6 +44,7 @@ a {
 *:focus {
   outline: 2px solid var(--primary-100);
   outline-offset: 2px;
+  box-shadow: none;
 }
 
 /* 버튼 기본 스타일 */
