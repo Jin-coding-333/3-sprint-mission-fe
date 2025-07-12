@@ -75,3 +75,10 @@ prd
 scripts/
 *storybook.log
 storybook-static
+
+# 왜인지 모르게 생긴 파일들
+.trae
+.clinerules
+AGENTS.md
+CLAUDE.md
+instructions
