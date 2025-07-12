@@ -1,4 +1,5 @@
 interface BaseFieldProps {
+  id?: string;
   name: string;
   value?: string;
   required?: boolean;
@@ -9,11 +10,12 @@ interface BaseFieldProps {
 }
 
 export interface InputProps extends BaseFieldProps {
-  type?: string;
+  type?: React.HTMLInputTypeAttribute;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface TextareaProps extends BaseFieldProps {
-  rows?: number;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}
+export type TextareaProps = BaseFieldProps &
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    label?: string;
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  };
