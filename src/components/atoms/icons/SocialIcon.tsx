@@ -6,6 +6,7 @@ interface SocialIconProps {
 
 export default function SocialIcon({ type }: SocialIconProps) {
   const src = `/icons/ic_${type}.svg`;
+  const altText = `${type} 소셜 미디어 아이콘`;
 
-  return <Image src={src} alt="social icon" width={24} height={24} />;
+  return <Image src={src} alt={altText} width={24} height={24} />;
 }
