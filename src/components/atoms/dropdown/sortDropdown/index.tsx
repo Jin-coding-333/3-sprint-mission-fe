@@ -8,7 +8,7 @@ export default function SortDropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative w-fit h-fit">
       <SortDropdownButton
         sortDropdownText="최신순"
         onClick={() => setIsOpen(!isOpen)}

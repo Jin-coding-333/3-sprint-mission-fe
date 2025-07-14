@@ -1,4 +1,4 @@
-import ActionDropdown from "./actionDropdown";
+import ActionDropdown from "../../molecules/dropdown/ActionDropdown";
 import SortDropdown from "./sortDropdown";
 
 interface DropdownProps {
