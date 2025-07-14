@@ -9,7 +9,6 @@ export default function Input({
   value,
   required,
   disabled,
-  error,
   placeholder,
   className,
   onChange,
