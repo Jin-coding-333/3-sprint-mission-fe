@@ -1,12 +1,17 @@
 interface ActionDropdownIconProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function ActionDropdownIcon({
   onClick,
 }: ActionDropdownIconProps) {
   return (
-    <div onClick={onClick}>
+    <button
+      onClick={onClick}
+      type="button"
+      aria-label="메뉴 열기 버튼"
+      className="bg-transparent border-none p-0"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -21,6 +26,6 @@ export default function ActionDropdownIcon({
           d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
         />
       </svg>
-    </div>
+    </button>
   );
 }
