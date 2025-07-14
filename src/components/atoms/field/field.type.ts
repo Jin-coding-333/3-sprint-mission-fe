@@ -1,10 +1,9 @@
 interface BaseFieldProps {
-  id?: string;
-  name: string;
+  id: string;
+  name?: string;
   value?: string;
   required?: boolean;
   disabled?: boolean;
-  error?: string;
   placeholder?: string;
   className?: string;
 }
