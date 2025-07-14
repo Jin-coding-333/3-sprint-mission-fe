@@ -1,12 +1,18 @@
+import cn from "@/utils/cn";
+
 interface LabelProps {
   label: string;
-  htmlFor?: string;
+  htmlFor: string;
+  className?: string;
 }
-export default function Label({ label, htmlFor }: LabelProps) {
+export default function Label({ label, htmlFor, className }: LabelProps) {
   return (
     <label
       htmlFor={htmlFor}
-      className="text-secondary-800 text-lg md:text-2lg mb-[8px] md:mb-[16px]"
+      className={cn(
+        "text-secondary-800 text-lg md:text-2lg mb-[8px] md:mb-[16px]",
+        className
+      )}
     >
       {label}
     </label>
