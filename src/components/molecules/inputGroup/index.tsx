@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Input from "@/components/atoms/field/Input";
 import Label from "@/components/atoms/field/Label";
 import { InputGroupProps } from "./inputGroup.type";
@@ -8,13 +7,19 @@ import { INPUT_GROUP_TYPE } from "./constants";
 import Icon from "@/components/atoms/icons/Icon";
 import EyeIcon from "@/components/atoms/icons/EyeIcon";
 import cn from "@/utils/cn";
+import { useInputGroup } from "./hooks/useInputGroup";
 
 export default function InputGroup({
   type = "email",
   onChange,
 }: InputGroupProps) {
-  const [inputValue, setInputValue] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const {
+    inputValue,
+    setInputValue,
+    isPasswordVisible,
+    setIsPasswordVisible,
+    inputType,
+  } = useInputGroup(type);
 
   return (
     <div className="flex flex-col gap-2 md:gap-4">
@@ -25,7 +30,7 @@ export default function InputGroup({
       />
       <div className="relative">
         <Input
-          type={INPUT_GROUP_TYPE[type].inputType}
+          type={inputType}
           id={type}
           name={type}
           value={inputValue}
