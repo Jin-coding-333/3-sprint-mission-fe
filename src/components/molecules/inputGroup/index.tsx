@@ -7,7 +7,7 @@ import { INPUT_GROUP_TYPE } from "./constants";
 import Icon from "@/components/atoms/icons/Icon";
 import EyeIcon from "@/components/atoms/icons/EyeIcon";
 import cn from "@/utils/cn";
-import { useInputGroup } from "./hooks/useInputGroup";
+import { useInputGroup } from "../../../hooks/components/useInputGroup";
 
 export default function InputGroup({
   type = "email",
@@ -24,7 +24,7 @@ export default function InputGroup({
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <Label
-        label={INPUT_GROUP_TYPE[type].label}
+        labelText={INPUT_GROUP_TYPE[type].label}
         htmlFor={type}
         className={cn(type === "search" && "hidden")}
       />
