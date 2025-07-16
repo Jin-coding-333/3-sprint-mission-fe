@@ -14,7 +14,4 @@ export interface InputProps extends BaseFieldProps {
 }
 
 export type TextareaProps = BaseFieldProps &
-  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-    label?: string;
-    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  };
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>;
