@@ -11,6 +11,7 @@ interface BaseFieldProps {
 export interface InputProps extends BaseFieldProps {
   type?: React.HTMLInputTypeAttribute;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export type TextareaProps = BaseFieldProps &
