@@ -10,7 +10,9 @@ type InputType =
 
 export interface InputGroupProps {
   type: InputType;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export interface InputGroupTypeItem {
