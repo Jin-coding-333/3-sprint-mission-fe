@@ -1,6 +1,8 @@
+import ProfileIcon from "@/components/atoms/icons/ProfileIcon";
 import Logo from "@/components/atoms/Logo";
 import GNBLoginButton from "@/components/molecules/GNBLoginButton";
 import GNBMenu from "@/components/molecules/GNBMevu";
+import Profile from "./Profile";
 
 export default function GNB() {
   return (
@@ -10,7 +12,8 @@ export default function GNB() {
           <Logo type="gnb" />
           <GNBMenu />
         </div>
-        <GNBLoginButton />
+        <GNBLoginButton className="" />
+        <Profile className="hidden" />
       </div>
     </header>
   );
