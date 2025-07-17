@@ -12,6 +12,7 @@ export default function Input({
   placeholder,
   className,
   onChange,
+  onKeyDown,
 }: InputProps) {
   return (
     <input
@@ -24,6 +25,7 @@ export default function Input({
       disabled={disabled}
       placeholder={placeholder}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 }

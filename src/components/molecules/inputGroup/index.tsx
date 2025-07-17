@@ -11,7 +11,9 @@ import { useInputGroup } from "../../../hooks/components/useInputGroup";
 
 export default function InputGroup({
   type = "email",
+  value,
   onChange,
+  onKeyDown,
 }: InputGroupProps) {
   const {
     inputValue,
@@ -33,8 +35,11 @@ export default function InputGroup({
           type={inputType}
           id={type}
           name={type}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={type === "tag" ? value : inputValue}
+          onChange={(e) =>
+            type === "tag" ? onChange?.(e) : setInputValue(e.target.value)
+          }
+          onKeyDown={onKeyDown}
           placeholder={INPUT_GROUP_TYPE[type].placeholder}
           className={cn(type === "search" && "h-[44px] pl-[44px]")}
         />
