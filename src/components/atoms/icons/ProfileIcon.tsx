@@ -1,12 +1,12 @@
 import Image from "next/image";
 
-interface DefaultProfileIconProps {
+interface ProfileIcon {
   size?: number;
 }
 
-export default function DefaultProfileIcon({
+export default function ProfileIcon({
   size = 40,
-}: DefaultProfileIconProps) {
+}: ProfileIcon) {
   return (
     <Image
       src="/icons/ic_default-profile.svg"
