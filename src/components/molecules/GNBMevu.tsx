@@ -3,7 +3,7 @@ import GNBMenuText from "../atoms/GNBMenuText";
 
 export default function GNBMenu() {
   return (
-    <nav className="flex items-center">
+    <nav className="flex items-center gap-[8px]">
       <Link href="/">
         <GNBMenuText text="자유게시판" />
       </Link>
