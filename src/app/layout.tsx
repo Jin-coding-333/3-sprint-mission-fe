@@ -2,6 +2,7 @@ import React from "react";
 import "./globals.css";
 import Provider from "@/providers/_provider";
 import GNB from "@/components/organisms/gnb";
+import Footer from "@/components/organisms/footer";
 
 export default function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Provider>
           <GNB />
           {children}
+          <Footer />
         </Provider>
       </body>
     </html>
