@@ -1,8 +1,12 @@
 interface EditIconProps {
   className?: string;
+  ariaLabel?: string;
 }
 
-export default function EditIcon({ className = "w-4 h-4" }: EditIconProps) {
+export default function EditIcon({
+  className = "w-4 h-4",
+  ariaLabel = "편집",
+}: EditIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +15,11 @@ export default function EditIcon({ className = "w-4 h-4" }: EditIconProps) {
       strokeWidth={1.5}
       stroke="currentColor"
       className={className}
+      role="img"
+      aria-label={ariaLabel}
+      aria-hidden="false"
     >
+      <title>{ariaLabel}</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
