@@ -6,5 +6,5 @@ interface DropdownProps {
 }
 
 export default function Dropdown({ type }: DropdownProps) {
-  return <>{type === "action" ? <ActionDropdown /> : <SortDropdown />}</>;
+  return type === "action" ? <ActionDropdown /> : <SortDropdown />;
 }
