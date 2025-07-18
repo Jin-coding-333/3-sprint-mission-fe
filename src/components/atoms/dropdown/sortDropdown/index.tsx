@@ -11,7 +11,7 @@ export default function SortDropdown() {
     <div className="relative w-fit h-fit">
       <SortDropdownButton
         sortDropdownText="최신순"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((prev) => !prev)}
       />
       {isOpen && <SortDropdownList />}
     </div>
