@@ -18,8 +18,8 @@ export default function Tag({ type, text, onClickRemoveTag }: TagProps) {
     >
       <span
         className={cn(
-          type === "editable" && "mr-[8px]",
-          "text-secondary-800 text-lg"
+          "text-secondary-800 text-lg",
+          type === "editable" && "mr-[8px]"
         )}
       >
         #{text}
