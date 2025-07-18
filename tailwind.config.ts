@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import forms from "@tailwindcss/forms";
 
 const config: Config = {
   content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
@@ -6,51 +7,53 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          100: "var(--primary-100)",
-          200: "var(--primary-200)",
-          300: "var(--primary-300)",
+          100: "#3692FF",
+          200: "#1967D6",
+          300: "#1251AA",
         },
-        error: "var(--error)",
+        error: "#F74747",
         secondary: {
-          900: "var(--secondary-900)",
-          800: "var(--secondary-800)",
-          700: "var(--secondary-700)",
-          600: "var(--secondary-600)",
-          500: "var(--secondary-500)",
-          400: "var(--secondary-400)",
-          300: "var(--secondary-300)",
-          200: "var(--secondary-200)",
-          100: "var(--secondary-100)",
-          50: "var(--secondary-50)",
+          900: "#111827",
+          800: "#1F2937",
+          700: "#374151",
+          600: "#4B5563",
+          500: "#6B7280",
+          400: "#9CA3AF",
+          300: "#E5E7EB",
+          200: "#F3F4F6",
+          100: "#F9FAFB",
+          50: "#F9FAFB",
         },
-        success: "var(--success)",
-        warning: "var(--warning)",
-        info: "var(--info)",
+        success: "#22C55E",
+        warning: "#FACC15",
+        info: "#3182F6",
       },
       fontFamily: {
-        pretendard: ["Pretendard", "sans-serif"],
+        pretendard: ["Pretendard Variable", "Pretendard", "sans-serif"],
       },
       fontSize: {
         xs: ["12px", { lineHeight: "18px" }],
         sm: ["13px", { lineHeight: "22px" }],
         md: ["14px", { lineHeight: "24px" }],
         lg: ["16px", { lineHeight: "26px" }],
+        "2lg": ["18px", { lineHeight: "28px" }],
         xl: ["20px", { lineHeight: "32px" }],
         "2xl": ["24px", { lineHeight: "32px" }],
         "3xl": ["32px", { lineHeight: "42px" }],
       },
       fontWeight: {
-        light: 300,
-        regular: 400,
-        medium: 500,
-        semiBold: 600,
-        bold: 700,
+        light: "300",
+        regular: "400",
+        medium: "500",
+        semiBold: "600",
+        bold: "700",
       },
       screens: {
-        xs: "375px",
+        sm: "375px",
         md: "744px",
-        xl: "1200px",
-        xxl: "1440px",
+        "2md": "1000px",
+        lg: "1200px",
+        xl: "1440px",
       },
       boxShadow: {
         custom: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
@@ -100,7 +103,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [forms],
 };
 
 export default config;
