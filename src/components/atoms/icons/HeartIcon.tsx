@@ -11,11 +11,13 @@ export default function HeartIcon({
 }: HeartIconProps) {
   const src = `/icons/ic_heart_${type}.svg`;
 
+  const altText = type === "pink" ? "filled heart icon" : "empty heart icon";
+
   return (
     <Image
       className={className}
       src={src}
-      alt="heart icon"
+      alt={altText}
       width={30}
       height={30}
     />
