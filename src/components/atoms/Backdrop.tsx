@@ -6,7 +6,7 @@ interface BackdropProps {
 export default function Backdrop({ children }: BackdropProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-20 bg-black/70">
-      <div className="z-20">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }
