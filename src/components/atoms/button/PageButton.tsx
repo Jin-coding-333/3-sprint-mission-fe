@@ -1,5 +1,4 @@
 import cn from "@/utils/cn";
-import Icon from "../icons/Icon";
 import ArrowIcon from "../icons/ArrowIcon";
 import React from "react";
 
