@@ -6,7 +6,7 @@ import ServiceIntro3 from "@/pages/landing/components/serviceIntroSection/Servic
 
 export default function HomePage() {
   return (
-    <div className="w-full h-full">
+    <div className="w-full">
       <HeroSection />
       <ServiceIntro1 />
       <ServiceIntro2 />
