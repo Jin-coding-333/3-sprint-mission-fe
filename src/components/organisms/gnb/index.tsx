@@ -21,7 +21,7 @@ export default function GNB() {
 
 const GNBStyle = {
   container:
-    "fixed top-0 left-0 right-0 z-50 h-[80px] px-[16px] md:px-[24px] 2md:px-[100px] lg:px-[200px] bg-white opacity-90 shadow-sm",
+    "fixed top-0 left-0 right-0 z-50 w-full h-[80px] px-[16px] md:px-[24px] 2md:px-[100px] lg:px-[200px] bg-white opacity-90 shadow-sm",
   content: "flex items-center justify-between h-full",
   logoWithMenu: "flex items-center gap-2 md:gap-[20px] lg:gap-[32px]",
 };
