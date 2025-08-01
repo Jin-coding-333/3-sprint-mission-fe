@@ -23,7 +23,7 @@ export default function HeroSection() {
           alt="랜딩 페이지 Hero 이미지"
           width={746}
           height={340}
-          className="w-[448px] h-[204px] md:w-[744px] md:h-[340px] lg:w-[746px] lg:h-[340px]"
+          className="min-w-[448px] h-[204px] md:w-[744px] md:h-[340px] lg:w-[746px] lg:h-[340px]"
         />
       </div>
     </section>
