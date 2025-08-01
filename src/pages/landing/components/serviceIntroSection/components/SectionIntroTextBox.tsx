@@ -41,6 +41,6 @@ const SectionIntroTextBoxStyle = {
   title:
     'mb-2 md:text:3xl lg:text-[40px] text-2xl lg:leading-normal font-bold text-secondary-700 w-[330px] lg:break-words lg:whitespace-pre-line',
   description:
-    'text-secondary-700 text-lg md:text-2lg lg:text-2xl w-[290px] break-words whitespace-pre-line',
+    'text-secondary-700 text-lg md:text-2lg lg:text-2xl w-[290px] break-words whitespace-pre-line lg:break-normal lg:whitespace-normal',
   section2: 'items-end text-right',
 };
