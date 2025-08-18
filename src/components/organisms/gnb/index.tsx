@@ -12,7 +12,7 @@ export default function GNB() {
           <Logo type="gnb" />
           <GNBMenu />
         </div>
-        <GNBLoginButton className="" />
+        <GNBLoginButton />
         <Profile className="hidden" />
       </div>
     </header>
