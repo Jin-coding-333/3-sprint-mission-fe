@@ -1,8 +1,11 @@
-"use client";
+'use client';
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useState } from "react";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import GNB from '@/components/organisms/gnb';
+import Footer from '@/components/organisms/footer';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -18,10 +21,21 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         },
       })
   );
+  const pathname = usePathname();
+
+  const isAuthPage = pathname?.startsWith('/auth');
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      {isAuthPage ? (
+        children
+      ) : (
+        <>
+          <GNB />
+          {children}
+          <Footer />
+        </>
+      )}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
