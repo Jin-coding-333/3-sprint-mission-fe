@@ -1,10 +1,12 @@
-import React from 'react';
-import './globals.css';
-import Provider from '@/providers/_provider';
-import GNB from '@/components/organisms/gnb';
-import Footer from '@/components/organisms/footer';
+import React from "react";
+import "./globals.css";
+import Provider from "@/providers/_provider";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ko">
       <head>
@@ -14,11 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.svg" />
       </head>
       <body className="w-full h-full pt-[80px]">
-        <Provider>
-          <GNB />
-          {children}
-          <Footer />
-        </Provider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
