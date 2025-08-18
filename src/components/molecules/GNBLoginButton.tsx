@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function GNBLoginButton({ className }: { className?: string }) {
   return (
-    <Link href="/login">
+    <Link href="/auth/log-in">
       <Button
         styleVariant="primary"
         shape="rectangle"
