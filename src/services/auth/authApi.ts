@@ -31,7 +31,7 @@ interface RefreshTokenResponse {
 // Auth 함수들
 export const postSignIn = async (credentials: LogInCredentials) => {
   const response = await axiosInstance.post<AuthResponse>(
-    "/auth/signin",
+    "/auth/signIn",
     credentials
   );
   return response.data;
@@ -39,7 +39,7 @@ export const postSignIn = async (credentials: LogInCredentials) => {
 
 export const postSignUp = async (credentials: SignUpCredentials) => {
   const response = await axiosInstance.post<AuthResponse>(
-    "/auth/signup",
+    "/auth/signUp",
     credentials
   );
   return response.data;
@@ -55,7 +55,6 @@ export const postRefreshToken = async (refreshToken: string) => {
   return response.data;
 };
 
-// 타입 export
 export type {
   LogInCredentials,
   SignUpCredentials,
