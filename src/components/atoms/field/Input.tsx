@@ -1,8 +1,9 @@
 import cn from "@/utils/cn";
 import { InputProps } from "./field.type";
 import { fieldStyles } from "./field.style";
+import { FieldValues, Path } from "react-hook-form";
 
-export default function Input({
+export default function Input<T extends FieldValues>({
   id,
   name,
   type,
@@ -11,21 +12,22 @@ export default function Input({
   disabled,
   placeholder,
   className,
-  onChange,
   onKeyDown,
-}: InputProps) {
+  register,
+  ...props
+}: InputProps<T>) {
   return (
     <input
       className={cn(fieldStyles.base, fieldStyles.input, className)}
       id={id}
-      name={name}
       type={type}
       value={value}
       required={required}
       disabled={disabled}
       placeholder={placeholder}
-      onChange={onChange}
       onKeyDown={onKeyDown}
+      {...register(name as Path<T>)}
+      {...props}
     />
   );
 }
