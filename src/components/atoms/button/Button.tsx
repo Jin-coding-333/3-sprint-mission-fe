@@ -1,6 +1,7 @@
 import cn from "@/utils/cn";
 
 interface ButtonProps {
+  type?: "button" | "submit" | "reset";
   shape?: "rectangle" | "round";
   styleVariant: "primary" | "secondary" | "danger" | "outline";
   onClick?: () => void;
@@ -10,6 +11,7 @@ interface ButtonProps {
 }
 
 export default function Button({
+  type = "button",
   shape = "rectangle",
   styleVariant,
   onClick,
