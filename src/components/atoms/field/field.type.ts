@@ -1,12 +1,26 @@
-interface BaseFieldProps {
-  error?: boolean;
+import {
+  FieldError,
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
+
+interface BaseFieldProps<T extends FieldValues> {
+  errors?: FieldError;
   helperText?: string;
+  register: UseFormRegister<T>;
+  options?: RegisterOptions<T, Path<T>>;
 }
 
-export interface InputProps
-  extends BaseFieldProps,
-    React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps<T extends FieldValues>
+  extends BaseFieldProps<T>,
+    React.InputHTMLAttributes<HTMLInputElement> {
+  name: Path<T>;
+}
 
-export interface TextareaProps
-  extends BaseFieldProps,
-    React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+export interface TextareaProps<T extends FieldValues>
+  extends BaseFieldProps<T>,
+    React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name: Path<T>;
+}

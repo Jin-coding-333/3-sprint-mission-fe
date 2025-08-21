@@ -1,3 +1,5 @@
+import { FieldValues, UseFormRegister } from "react-hook-form";
+
 type InputType =
   | "email"
   | "password"
@@ -8,9 +10,10 @@ type InputType =
   | "tag"
   | "search";
 
-export interface InputGroupProps {
+export interface InputGroupProps<T extends FieldValues> {
   type: InputType;
   value?: string;
+  register: UseFormRegister<T>;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
