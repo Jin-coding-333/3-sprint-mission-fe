@@ -1,5 +1,6 @@
 "use client";
 
+import { FieldValues, Path } from "react-hook-form";
 import Input from "@/components/atoms/field/Input";
 import Label from "@/components/atoms/field/Label";
 import { InputGroupProps } from "./inputGroup.type";
@@ -9,12 +10,13 @@ import EyeIcon from "@/components/atoms/icons/EyeIcon";
 import cn from "@/utils/cn";
 import { useInputGroup } from "../../../hooks/components/useInputGroup";
 
-export default function InputGroup({
+export default function InputGroup<T extends FieldValues>({
   type = "email",
   value,
   onChange,
   onKeyDown,
-}: InputGroupProps) {
+  register,
+}: InputGroupProps<T>) {
   const {
     inputValue,
     setInputValue,
@@ -34,7 +36,7 @@ export default function InputGroup({
         <Input
           type={inputType}
           id={type}
-          name={type}
+          name={type as any as Path<T>}
           value={type === "tag" ? value : inputValue}
           onChange={(e) =>
             type === "tag" ? onChange?.(e) : setInputValue(e.target.value)
@@ -42,6 +44,7 @@ export default function InputGroup({
           onKeyDown={onKeyDown}
           placeholder={INPUT_GROUP_TYPE[type].placeholder}
           className={cn(type === "search" && "h-[44px] pl-[44px]")}
+          register={register}
         />
         {type === "search" && (
           <button type="button">
