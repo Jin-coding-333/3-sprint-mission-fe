@@ -1,8 +1,8 @@
 import AuthLayout from "@/pages/auth/components/AuthLayout";
 
-export default function Signup() {
+export default function SignUp() {
   return (
-    <AuthLayout type="signup">
+    <AuthLayout type="signUp">
       <form></form>
     </AuthLayout>
   );
