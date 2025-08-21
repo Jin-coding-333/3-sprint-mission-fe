@@ -4,20 +4,19 @@ import SimpleLoginIcon from "./SimpleLoginIcon";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
-  type: "login" | "signup";
+  type: "logIn" | "signUp";
 }
 
 export default function AuthLayout({ children, type }: AuthLayoutProps) {
   return (
     <div className={AuthLayoutStyle.container}>
       <div className="flex flex-col items-center">
-        <Link href="/">
+        <Link href="/" className="mb-[40px]">
           <Image
             src="/imgs/img_main-logo.svg"
             alt="랜딩 페이지 Hero 이미지"
             width={400}
             height={135}
-            className="mb-[40px]"
           />
         </Link>
         {children}
@@ -31,14 +30,14 @@ export default function AuthLayout({ children, type }: AuthLayoutProps) {
           </div>
         </div>
         <p className="text-md font-medium text-secondary-800">
-          {type === "login"
+          {type === "signUp"
             ? "판다마켓이 처음이신가요? "
             : "이미 회원이신가요? "}
           <Link
-            href={type === "login" ? "/auth/signup" : "/auth/login"}
+            href={type === "signUp" ? "/auth/signup" : "/auth/login"}
             className="text-primary-100"
           >
-            {type === "login" ? "회원가입" : "로그인"}
+            {type === "signUp" ? "회원가입" : "로그인"}
           </Link>
         </p>
       </div>
