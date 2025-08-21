@@ -1,9 +1,10 @@
 import AuthLayout from "@/pages/auth/components/AuthLayout";
+import LogInFormGroup from "@/pages/auth/components/LogInFormGroup";
 
-export default function Login() {
+export default function LogIn() {
   return (
-    <AuthLayout type="login">
-      <form></form>
+    <AuthLayout type="logIn">
+      <LogInFormGroup />
     </AuthLayout>
   );
 }
