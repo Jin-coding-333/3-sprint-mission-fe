@@ -1,12 +1,12 @@
 import axiosInstance from "@/lib/axiosInstance";
 
 // Auth 타입 정의
-interface LoginCredentials {
+interface LogInCredentials {
   email: string;
   password: string;
 }
 
-interface SignupCredentials {
+interface SignUpCredentials {
   email: string;
   nickname: string;
   password: string;
@@ -29,7 +29,7 @@ interface RefreshTokenResponse {
 }
 
 // Auth 함수들
-export const postSignin = async (credentials: LoginCredentials) => {
+export const postSignIn = async (credentials: LogInCredentials) => {
   const response = await axiosInstance.post<AuthResponse>(
     "/auth/signin",
     credentials
@@ -37,7 +37,7 @@ export const postSignin = async (credentials: LoginCredentials) => {
   return response.data;
 };
 
-export const postSignup = async (credentials: SignupCredentials) => {
+export const postSignUp = async (credentials: SignUpCredentials) => {
   const response = await axiosInstance.post<AuthResponse>(
     "/auth/signup",
     credentials
@@ -57,8 +57,8 @@ export const postRefreshToken = async (refreshToken: string) => {
 
 // 타입 export
 export type {
-  LoginCredentials,
-  SignupCredentials,
+  LogInCredentials,
+  SignUpCredentials,
   AuthResponse,
   RefreshTokenResponse,
 };
