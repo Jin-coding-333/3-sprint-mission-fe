@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import {
-  postSignin,
-  postSignup,
+  postSignIn,
+  postSignUp,
   postRefreshToken,
-  LoginCredentials,
-  SignupCredentials,
+  LogInCredentials,
+  SignUpCredentials,
   AuthResponse,
   RefreshTokenResponse,
 } from "@/services/auth/authApi";
@@ -14,8 +14,8 @@ export function useSignIn(options?: {
   onSuccess?: (data: AuthResponse) => void;
   onError?: (error: Error) => void;
 }) {
-  return useMutation<AuthResponse, Error, LoginCredentials>({
-    mutationFn: postSignin,
+  return useMutation<AuthResponse, Error, LogInCredentials>({
+    mutationFn: postSignIn,
     ...options,
   });
 }
@@ -25,8 +25,8 @@ export function useSignUp(options?: {
   onSuccess?: (data: AuthResponse) => void;
   onError?: (error: Error) => void;
 }) {
-  return useMutation<AuthResponse, Error, SignupCredentials>({
-    mutationFn: postSignup,
+  return useMutation<AuthResponse, Error, SignUpCredentials>({
+    mutationFn: postSignUp,
     ...options,
   });
 }
