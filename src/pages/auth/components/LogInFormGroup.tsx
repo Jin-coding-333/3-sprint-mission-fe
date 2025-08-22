@@ -41,7 +41,6 @@ export default function LogInFormGroup() {
             message: "이메일 형식이 올바르지 않습니다",
           },
         }}
-        errors={errors.email as FieldError}
       />
       <InputGroup
         type="password"
@@ -54,7 +53,6 @@ export default function LogInFormGroup() {
               "비밀번호는 최소 8자리 이상이며 영문자와 숫자가 포함되어야 합니다",
           },
         }}
-        errors={errors.password as FieldError}
       />
       <Button
         type="submit"
