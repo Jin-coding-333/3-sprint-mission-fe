@@ -13,6 +13,8 @@ import { useInputGroup } from "../../../hooks/components/useInputGroup";
 export default function InputGroup<T extends FieldValues>({
   type = "email",
   value,
+  validation,
+  errors,
   onChange,
   onKeyDown,
   register,
@@ -45,6 +47,7 @@ export default function InputGroup<T extends FieldValues>({
           placeholder={INPUT_GROUP_TYPE[type].placeholder}
           className={cn(type === "search" && "h-[44px] pl-[44px]")}
           register={register}
+          validation={validation}
         />
         {type === "search" && (
           <button type="button">
