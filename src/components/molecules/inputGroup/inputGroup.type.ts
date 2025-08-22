@@ -1,4 +1,10 @@
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import {
+  FieldError,
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
 type InputType =
   | "email"
@@ -13,6 +19,8 @@ type InputType =
 export interface InputGroupProps<T extends FieldValues> {
   type: InputType;
   value?: string;
+  validation?: RegisterOptions<T, Path<T>>;
+  errors?: FieldError;
   register: UseFormRegister<T>;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
