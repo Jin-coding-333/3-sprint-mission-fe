@@ -14,6 +14,7 @@ export default function Input<T extends FieldValues>({
   className,
   onKeyDown,
   register,
+  validation,
   ...props
 }: InputProps<T>) {
   return (
@@ -26,7 +27,7 @@ export default function Input<T extends FieldValues>({
       disabled={disabled}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
-      {...register(name as Path<T>)}
+      {...register(name as Path<T>, validation)}
       {...props}
     />
   );
