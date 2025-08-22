@@ -7,10 +7,9 @@ import {
 } from "react-hook-form";
 
 interface BaseFieldProps<T extends FieldValues> {
-  errors?: FieldError;
   helperText?: string;
+  validation?: RegisterOptions<T, Path<T>>;
   register: UseFormRegister<T>;
-  options?: RegisterOptions<T, Path<T>>;
 }
 
 export interface InputProps<T extends FieldValues>
