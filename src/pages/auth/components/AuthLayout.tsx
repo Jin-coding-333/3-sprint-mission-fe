@@ -10,7 +10,7 @@ interface AuthLayoutProps {
 export default function AuthLayout({ children, type }: AuthLayoutProps) {
   return (
     <div className={AuthLayoutStyle.container}>
-      <div className="flex flex-col items-center">
+      <div className={AuthLayoutStyle.content}>
         <Link href="/" className="mb-[40px]">
           <Image
             src="/imgs/img_main-logo.svg"
@@ -34,10 +34,10 @@ export default function AuthLayout({ children, type }: AuthLayoutProps) {
             ? "판다마켓이 처음이신가요? "
             : "이미 회원이신가요? "}
           <Link
-            href={type === "signUp" ? "/auth/signup" : "/auth/login"}
+            href={type === "signUp" ? "/auth/log-in" : "/auth/sign-up"}
             className="text-primary-100"
           >
-            {type === "signUp" ? "회원가입" : "로그인"}
+            {type === "signUp" ? "로그인" : "회원가입"}
           </Link>
         </p>
       </div>
@@ -46,7 +46,8 @@ export default function AuthLayout({ children, type }: AuthLayoutProps) {
 }
 
 const AuthLayoutStyle = {
-  container: "w-screen h-screen flex justify-center items-center",
+  container: "w-screen h-screen flex justify-center items-center mb-[120px]",
+  content: "flex flex-col items-center w-[350px] md:w-[640px]",
   simpleLoginBox:
     "w-full h-[75px] flex items-center justify-between my-[24px] px-[23px] py-[16px] bg-[#E6F2FF] border border-[#F3F4F6] rounded-[8px]",
 };
