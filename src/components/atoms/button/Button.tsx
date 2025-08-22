@@ -26,7 +26,7 @@ export default function Button({
         buttonStyle[styleVariant],
         buttonStyle.shape[shape],
         className,
-        disabled && "bg-secondary-400"
+        disabled && buttonStyle.disabled
       )}
       onClick={onClick}
       disabled={disabled}
@@ -47,4 +47,5 @@ const buttonStyle = {
     rectangle: "rounded-[12px]",
     round: "rounded-[26px]",
   },
+  disabled: "bg-secondary-400",
 };

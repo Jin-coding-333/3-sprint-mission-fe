@@ -7,17 +7,20 @@ import {
 } from "react-hook-form";
 
 interface BaseFieldProps<T extends FieldValues> {
-  helperText?: string;
-  validation?: RegisterOptions<T, Path<T>>;
   errors?: FieldError;
-  register?: UseFormRegister<T>;
+  helperText?: string;
+  register: UseFormRegister<T>;
   options?: RegisterOptions<T, Path<T>>;
 }
 
 export interface InputProps<T extends FieldValues>
   extends BaseFieldProps<T>,
-    React.InputHTMLAttributes<HTMLInputElement> {}
+    React.InputHTMLAttributes<HTMLInputElement> {
+  name: Path<T>;
+}
 
 export interface TextareaProps<T extends FieldValues>
   extends BaseFieldProps<T>,
-    React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+    React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name: Path<T>;
+}
