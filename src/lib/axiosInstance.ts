@@ -2,9 +2,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 const axiosInstance = axios.create({
-  baseURL:
-    process.env.NEXT_PUBLIC_API_BASE_URL ||
-    "https://panda-market-api.vercel.app",
+  baseURL: "/api",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
