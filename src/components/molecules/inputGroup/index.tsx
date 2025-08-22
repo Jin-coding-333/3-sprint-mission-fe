@@ -16,6 +16,9 @@ export default function InputGroup<T extends FieldValues>({
   onChange,
   onKeyDown,
   register,
+  validation,
+  errors,
+  ...props
 }: InputGroupProps<T>) {
   const {
     inputValue,
@@ -24,6 +27,8 @@ export default function InputGroup<T extends FieldValues>({
     setIsPasswordVisible,
     inputType,
   } = useInputGroup(type);
+
+  console.log("errors 메시지: ", errors);
 
   return (
     <div className="flex flex-col gap-2 md:gap-4">
@@ -36,15 +41,15 @@ export default function InputGroup<T extends FieldValues>({
         <Input
           type={inputType}
           id={type}
-          name={type as any as Path<T>}
-          value={type === "tag" ? value : inputValue}
-          onChange={(e) =>
-            type === "tag" ? onChange?.(e) : setInputValue(e.target.value)
-          }
+          value={type === "tag" ? value : undefined}
+          onChange={type === "tag" ? onChange : undefined}
           onKeyDown={onKeyDown}
           placeholder={INPUT_GROUP_TYPE[type].placeholder}
           className={cn(type === "search" && "h-[44px] pl-[44px]")}
           register={register}
+          validation={validation}
+          errors={errors}
+          {...props}
         />
         {type === "search" && (
           <button type="button">
@@ -65,6 +70,9 @@ export default function InputGroup<T extends FieldValues>({
           />
         )}
       </div>
+      {errors?.message && (
+        <p className="text-error text-lg">{errors?.message}</p>
+      )}
     </div>
   );
 }

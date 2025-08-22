@@ -1,33 +1,49 @@
-import { useMutation } from "@tanstack/react-query";
+"use client";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import {
-  postSignin,
-  postSignup,
+  postSignIn,
+  postSignUp,
   postRefreshToken,
-  LoginCredentials,
-  SignupCredentials,
+  LogInCredentials,
+  SignUpCredentials,
   AuthResponse,
   RefreshTokenResponse,
 } from "@/services/auth/authApi";
 
 // 1. 로그인
-export function useSignIn(options?: {
-  onSuccess?: (data: AuthResponse) => void;
-  onError?: (error: Error) => void;
-}) {
-  return useMutation<AuthResponse, Error, LoginCredentials>({
-    mutationFn: postSignin,
-    ...options,
+export function useSignIn() {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation<AuthResponse, Error, LogInCredentials>({
+    mutationKey: ["signIn"],
+    mutationFn: postSignIn,
+    onSuccess: (data) => {
+      queryClient.setQueryData(["auth"], data);
+      router.push("/");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 }
 
 // 2. 회원가입
-export function useSignUp(options?: {
-  onSuccess?: (data: AuthResponse) => void;
-  onError?: (error: Error) => void;
-}) {
-  return useMutation<AuthResponse, Error, SignupCredentials>({
-    mutationFn: postSignup,
-    ...options,
+export function useSignUp() {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation<AuthResponse, Error, SignUpCredentials>({
+    mutationKey: ["signUp"],
+    mutationFn: postSignUp,
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 }
 

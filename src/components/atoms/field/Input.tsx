@@ -5,20 +5,26 @@ import { FieldValues, Path } from "react-hook-form";
 
 export default function Input<T extends FieldValues>({
   id,
-  name,
   type,
   value,
   required,
   disabled,
   placeholder,
   className,
+  validation,
+  errors,
   onKeyDown,
   register,
   ...props
 }: InputProps<T>) {
   return (
     <input
-      className={cn(fieldStyles.base, fieldStyles.input, className)}
+      className={cn(
+        fieldStyles.base,
+        fieldStyles.input,
+        errors && fieldStyles.error,
+        className
+      )}
       id={id}
       type={type}
       value={value}
@@ -26,7 +32,7 @@ export default function Input<T extends FieldValues>({
       disabled={disabled}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
-      {...register(name as Path<T>)}
+      {...register?.(id as Path<T>, validation)}
       {...props}
     />
   );

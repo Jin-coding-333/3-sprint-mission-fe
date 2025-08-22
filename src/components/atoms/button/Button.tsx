@@ -26,7 +26,7 @@ export default function Button({
         buttonStyle[styleVariant],
         buttonStyle.shape[shape],
         className,
-        disabled && "opacity-50"
+        disabled && "bg-secondary-400"
       )}
       onClick={onClick}
       disabled={disabled}
