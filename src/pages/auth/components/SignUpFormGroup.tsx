@@ -2,7 +2,7 @@
 
 import Button from "@/components/atoms/button/Button";
 import InputGroup from "@/components/molecules/inputGroup";
-import { useForm, FieldErrors, FieldValues, FieldError } from "react-hook-form";
+import { useForm, FieldErrors, FieldError } from "react-hook-form";
 import { useSignUp } from "@/hooks/auth/useAuth";
 import { SignUpCredentials } from "@/services/auth/authApi";
 
@@ -13,16 +13,15 @@ export default function SignUpFormGroup() {
     handleSubmit,
     watch,
     formState: { errors, isValid },
-  } = useForm({
-    mode: "onChange",
+  } = useForm<SignUpCredentials>({
+    mode: "onBlur",
     shouldFocusError: true,
   });
 
   const password = watch("password");
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    signUp(data as SignUpCredentials);
+  const onSubmit = (data: SignUpCredentials) => {
+    signUp(data);
   };
 
   const onError = (errors: FieldErrors) => {
@@ -44,7 +43,7 @@ export default function SignUpFormGroup() {
             message: "이메일 형식이 올바르지 않습니다",
           },
         }}
-        errors={errors.email as FieldError}
+        errors={errors.email}
       />
       <InputGroup
         type="nickname"
@@ -60,7 +59,7 @@ export default function SignUpFormGroup() {
             message: "닉네임은 최대 10자까지 가능합니다",
           },
         }}
-        errors={errors.nickname as FieldError}
+        errors={errors.nickname}
       />
       <InputGroup
         type="password"
@@ -73,17 +72,17 @@ export default function SignUpFormGroup() {
               "비밀번호는 최소 8자리 이상이며 영문자와 숫자가 포함되어야 합니다",
           },
         }}
-        errors={errors.password as FieldError}
+        errors={errors.password}
       />
       <InputGroup
-        type="checkPassword"
+        type="passwordConfirmation"
         register={register}
         validation={{
           required: "비밀번호 확인을 입력해주세요",
           validate: (value: string) =>
             value === password || "비밀번호가 일치하지 않습니다",
         }}
-        errors={errors.passwordConfirmation as FieldError}
+        errors={errors.passwordConfirmation}
       />
       <Button
         type="submit"
