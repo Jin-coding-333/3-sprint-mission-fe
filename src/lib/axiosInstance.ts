@@ -1,5 +1,4 @@
 import axios from "axios";
-import { redirect } from "next/navigation";
 
 const axiosInstance = axios.create({
   baseURL: "/api",
@@ -64,7 +63,7 @@ axiosInstance.interceptors.response.use(
         if (typeof window !== "undefined") {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
-          redirect("/login");
+          window.location.href = "/login";
         }
         return Promise.reject(refreshError);
       }
