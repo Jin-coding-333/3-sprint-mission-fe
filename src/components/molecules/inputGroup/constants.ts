@@ -11,7 +11,7 @@ export const INPUT_GROUP_TYPE: Record<string, InputGroupTypeItem> = {
     placeholder: "비밀번호를 입력해주세요",
     inputType: "password",
   },
-  checkPassword: {
+  passwordConfirmation: {
     label: "비밀번호 확인",
     placeholder: "비밀번호를 다시 한 번 입력해주세요",
     inputType: "password",
