@@ -1,14 +1,15 @@
 "use client";
 
 import { FieldValues, Path } from "react-hook-form";
-import Input from "@/components/atoms/field/Input";
-import Label from "@/components/atoms/field/Label";
 import { InputGroupProps } from "./inputGroup.type";
 import { INPUT_GROUP_TYPE } from "./constants";
+import { useInputGroup } from "../../../hooks/components/useInputGroup";
+import Input from "@/components/atoms/field/Input";
+import Label from "@/components/atoms/field/Label";
 import Icon from "@/components/atoms/icons/Icon";
 import EyeIcon from "@/components/atoms/icons/EyeIcon";
 import cn from "@/utils/cn";
-import { useInputGroup } from "../../../hooks/components/useInputGroup";
+import ErrorMessage from "@/components/atoms/field/ErrorMessage";
 
 export default function InputGroup<T extends FieldValues>({
   type = "email",
@@ -45,7 +46,10 @@ export default function InputGroup<T extends FieldValues>({
           }
           onKeyDown={onKeyDown}
           placeholder={INPUT_GROUP_TYPE[type].placeholder}
-          className={cn(type === "search" && "h-[44px] pl-[44px]")}
+          className={cn(
+            errors && "border border-red-500",
+            type === "search" && "h-[44px] pl-[44px]"
+          )}
           register={register}
           validation={validation}
         />
@@ -57,17 +61,15 @@ export default function InputGroup<T extends FieldValues>({
             />
           </button>
         )}
-        {(type === "password" || type === "checkPassword") && (
+        {(type === "password" || type === "passwordConfirmation") && (
           <EyeIcon
             type={isPasswordVisible ? "visible" : "invisible"}
-            className={cn(
-              "absolute right-[24px]",
-              isPasswordVisible ? "bottom-[20px]" : "bottom-[16px]"
-            )}
+            className={cn("absolute right-[24px]")}
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           />
         )}
       </div>
+      {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
     </div>
   );
 }
