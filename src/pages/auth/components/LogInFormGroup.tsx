@@ -12,14 +12,13 @@ export default function LogInFormGroup() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
-    mode: "onChange",
+  } = useForm<LogInCredentials>({
+    mode: "onBlur",
     shouldFocusError: true,
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    signIn(data as LogInCredentials);
+  const onSubmit = (data: LogInCredentials) => {
+    signIn(data);
   };
 
   const onError = (errors: FieldErrors) => {
