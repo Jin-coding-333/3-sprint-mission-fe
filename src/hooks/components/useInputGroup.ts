@@ -6,7 +6,7 @@ export function useInputGroup(type: string) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const inputType =
-    type === "password" || type === "checkPassword"
+    type === "password" || type === "passwordConfirmation"
       ? isPasswordVisible
         ? "text"
         : "password"

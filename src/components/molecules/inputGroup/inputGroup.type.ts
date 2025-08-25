@@ -9,7 +9,7 @@ import {
 type InputType =
   | "email"
   | "password"
-  | "checkPassword"
+  | "passwordConfirmation"
   | "nickname"
   | "prodName"
   | "prodPrice"
