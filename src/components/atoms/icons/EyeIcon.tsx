@@ -22,7 +22,7 @@ export default function EyeIcon({ type, className, onClick }: EyeIconProps) {
       )}
       onClick={onClick}
     >
-      <Image src={src} alt="eye icon" width={24} height={24} />
+      <Image src={src} alt="eye icon" width={24} height={24} className="w-full h-auto" />
     </button>
   );
 }
