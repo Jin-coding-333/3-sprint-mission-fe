@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import {
   postSignIn,
@@ -15,14 +14,12 @@ export function useSignIn(options?: {
   onSuccess?: (data: AuthResponse) => void;
   onError?: (error: Error) => void;
 }) {
-  const router = useRouter();
-
   return useMutation<AuthResponse, Error, LogInCredentials>({
     mutationFn: postSignIn,
-    onSuccess: () => {
-      router.push("/");
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
     },
-    ...options,
   });
 }
 
@@ -31,13 +28,8 @@ export function useSignUp(options?: {
   onSuccess?: (data: AuthResponse) => void;
   onError?: (error: Error) => void;
 }) {
-  const router = useRouter();
-
   return useMutation<AuthResponse, Error, SignUpCredentials>({
     mutationFn: postSignUp,
-    onSuccess: () => {
-      router.push("/auth/log-in");
-    },
     ...options,
   });
 }
