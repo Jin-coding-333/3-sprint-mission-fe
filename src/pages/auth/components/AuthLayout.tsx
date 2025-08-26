@@ -17,6 +17,8 @@ export default function AuthLayout({ children, type }: AuthLayoutProps) {
             alt="랜딩 페이지 Hero 이미지"
             width={400}
             height={135}
+            className="w-full h-auto"
+            priority
           />
         </Link>
         {children}
