@@ -19,7 +19,10 @@ export default function Modal({ onClick, children }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   useEscapeClose(() => setIsOpen(false));
 
-  const handleClick = () => setIsOpen(false);
+  const handleClick = () => {
+    setIsOpen(false);
+    onClick?.();
+  };
 
   return (
     <div>
