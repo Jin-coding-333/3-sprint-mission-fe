@@ -5,9 +5,26 @@ import InputGroup from "@/components/molecules/inputGroup";
 import { useForm, FieldErrors, FieldValues, FieldError } from "react-hook-form";
 import { useSignIn } from "@/hooks/auth/useAuth";
 import { LogInCredentials } from "@/services/auth/authApi";
+import Modal from "@/components/molecules/Modal";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LogInFormGroup() {
-  const { mutate: signIn } = useSignIn();
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  const router = useRouter();
+  const { mutate: signIn, isSuccess } = useSignIn({
+    onSuccess: () => {
+      setShowModal(true);
+      setModalMessage("로그인에 성공했습니다.");
+    },
+    onError: (error) => {
+      setShowModal(true);
+      setModalMessage("이메일과 비밀번호를 확인해주세요.");
+      console.log("error", error);
+    },
+  });
   const {
     register,
     handleSubmit,
@@ -22,48 +39,60 @@ export default function LogInFormGroup() {
   };
 
   const onError = (errors: FieldErrors) => {
-    console.log("hello");
+    console.log("errors", errors);
   };
 
   return (
-    <form
-      className="w-full flex flex-col gap-6"
-      onSubmit={handleSubmit(onSubmit, onError)}
-    >
-      <InputGroup
-        type="email"
-        register={register}
-        validation={{
-          required: "이메일을 입력해주세요",
-          pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: "이메일 형식이 올바르지 않습니다",
-          },
-        }}
-        errors={errors.email}
-      />
-      <InputGroup
-        type="password"
-        register={register}
-        validation={{
-          required: "비밀번호를 입력해주세요",
-          pattern: {
-            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, // 최소 8자리, 영문자와 숫자가 포함된 패턴
-            message:
-              "비밀번호는 최소 8자리 이상이며 영문자와 숫자가 포함되어야 합니다",
-          },
-        }}
-        errors={errors.password}
-      />
-      <Button
-        type="submit"
-        styleVariant="primary"
-        shape="round"
-        className="w-full"
-        disabled={!isValid}
+    <>
+      <form
+        className="w-full flex flex-col gap-6"
+        onSubmit={handleSubmit(onSubmit, onError)}
       >
-        로그인
-      </Button>
-    </form>
+        <InputGroup
+          type="email"
+          register={register}
+          validation={{
+            required: "이메일을 입력해주세요",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "이메일 형식이 올바르지 않습니다",
+            },
+          }}
+          errors={errors.email}
+        />
+        <InputGroup
+          type="password"
+          register={register}
+          validation={{
+            required: "비밀번호를 입력해주세요",
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, // 최소 8자리, 영문자와 숫자가 포함된 패턴
+              message:
+                "비밀번호는 최소 8자리 이상이며 영문자와 숫자가 포함되어야 합니다",
+            },
+          }}
+          errors={errors.password}
+        />
+        <Button
+          type="submit"
+          styleVariant="primary"
+          shape="round"
+          className="w-full"
+          disabled={!isValid}
+        >
+          로그인
+        </Button>
+      </form>
+      {showModal && (
+        <Modal
+          onClick={() => {
+            if (isSuccess) router.push("/");
+            setShowModal(false);
+          }}
+        >
+          {modalMessage}
+        </Modal>
+      )}
+    </>
   );
 }
