@@ -22,7 +22,7 @@ export default function TagInput() {
 
   return (
     <div className="flex flex-col gap-[14px]">
-      <InputGroup
+      <InputGroup 
         type="tag"
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
