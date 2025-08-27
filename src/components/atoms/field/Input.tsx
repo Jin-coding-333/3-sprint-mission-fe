@@ -27,7 +27,7 @@ export default function Input<T extends FieldValues>({
       disabled={disabled}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
-      {...register(name as Path<T>, validation)}
+      {...(register ? register(name as Path<T>, validation) : {})}
       {...props}
     />
   );
