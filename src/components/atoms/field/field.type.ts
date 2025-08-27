@@ -9,7 +9,7 @@ import {
 interface BaseFieldProps<T extends FieldValues> {
   helperText?: string;
   validation?: RegisterOptions<T, Path<T>>;
-  register: UseFormRegister<T>;
+  register?: UseFormRegister<T>;
 }
 
 export interface InputProps<T extends FieldValues>
