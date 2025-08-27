@@ -12,19 +12,18 @@ import Modal from "@/components/molecules/Modal";
 export default function SignUpFormGroup() {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const router = useRouter();
-  const { mutate: signUp } = useSignUp({
+  const { mutate: signUp, isSuccess } = useSignUp({
     onSuccess: () => {
       setShowModal(true);
       setModalMessage("가입이 완료되었습니다.");
-      setIsSuccess(true);
     },
     onError: (error) => {
       setShowModal(true);
-      setModalMessage(error.message || "회원가입에 실패했습니다.");
-      setIsSuccess(false);
+      setModalMessage(
+        (error as any)?.response?.data?.message || "회원가입에 실패했습니다."
+      );
     },
   });
   const {
@@ -112,15 +111,6 @@ export default function SignUpFormGroup() {
           disabled={!isValid}
         >
           회원가입
-        </Button>
-        <Button
-          type="button"
-          styleVariant="outline"
-          shape="round"
-          className="w-full"
-          onClick={() => setShowModal(true)}
-        >
-          로그인
         </Button>
       </form>
       {showModal && (
