@@ -19,7 +19,9 @@ export function useSignIn(options?: {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
+      options?.onSuccess?.(data);
     },
+    ...options,
   });
 }
 
